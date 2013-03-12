@@ -1,0 +1,35 @@
+<div class="hero-unit">
+  <h1>TDAF Simple App</h1>
+</div>
+
+<div ng-controller="UserController" ng-show="user.id">
+    <p class="alert-info">Hola! {{user.name}} de {{user.from}}!!! <a href="/logout">Logout</a></p>
+</div>
+
+<div ng-controller="TimeController">
+    <p><a ng-click="getTime()">GetTime</a></p>
+    <p ng-show="resultTime">Result:{{resultTime}}</p>
+
+    <p><a ng-click="getDogs()">GetDogs</a></p>
+    <p ng-show="resultDogs">Result:{{resultDogs}}</p>
+</div>
+
+<div ng-controller="AuthController">
+    <p>
+        <a ng-click="onMovistarLogin()">
+            <img style="border: 0px" src="http://cdn5.staztic.com/cdn/logos/clmamigosandroid-4.png:w48h48"
+                 alt="With Movistar"/>
+        </a>
+    </p>
+    <p>
+        <a ng-click="onTwitterLogin()">
+            <img style="border: 0px" src="https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png"
+                 alt="With Twitter"/>
+        </a>
+    </p>
+    <p>
+        <a ng-click="onGoogleLogin()">
+            GOOOOOOOOGLE
+        </a>
+    </p>
+</div>
