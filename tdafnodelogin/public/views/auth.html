@@ -1,0 +1,13 @@
+<div class="container" ng-controller="AuthController" style="margin-top:100px;">
+    <div class="row">
+        <div class="span4 offset4 well">
+            <img ng-src="{{auth.picture}}"/><p>Hola {{auth.username}}</p>
+            <p>La App {{auth.clientId}} (falta obtener los datos de la app) solicita permiso para {{auth.scope}}</p>
+            <p>¿Se lo concedes?</p>
+            <form method="POST" action="/userauth" accept-charset="UTF-8">
+
+                <button type="submit" name="submit" class="btn btn-info btn-block">Yes</button>
+            </form>
+        </div>
+    </div>
+</div>

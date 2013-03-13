@@ -1,0 +1,16 @@
+{
+  "name": "tdaf-login-app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "everyauth": "https://github.com/bnoguchi/everyauth/archive/express3.tar.gz",
+    "oauth": "https://github.com/ciaranj/node-oauth/tarball/master",
+    "express": "3.1.0",
+    "jade": "*",
+    "usergrid": "~0.10.4",
+    "ejs": "~0.8.3"
+  }
+}
