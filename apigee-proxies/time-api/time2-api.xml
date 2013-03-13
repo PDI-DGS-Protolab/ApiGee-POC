@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="time2-api">
+    <ConfigurationVersion minorVersion="0" majorVersion="4"/>
+    <CreatedAt>1363009175293</CreatedAt>
+    <CreatedBy>adminui@apigee.com</CreatedBy>
+    <Description>Test2 API access</Description>
+    <DisplayName>time2-api</DisplayName>
+    <LastModifiedAt>1363009175293</LastModifiedAt>
+    <LastModifiedBy>adminui@apigee.com</LastModifiedBy>
+    <Policies/>
+    <ProxyEndpoints/>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>

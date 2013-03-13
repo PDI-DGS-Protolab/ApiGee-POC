@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="3" name="tdaf-oauth-login-app">
+    <ConfigurationVersion minorVersion="0" majorVersion="4"/>
+    <CreatedAt>1363028061968</CreatedAt>
+    <CreatedBy>adminui@apigee.com</CreatedBy>
+    <Description>null</Description>
+    <DisplayName>OAuth20</DisplayName>
+    <LastModifiedAt>1363028062540</LastModifiedAt>
+    <LastModifiedBy>adminui@apigee.com</LastModifiedBy>
+    <Policies>
+        <Policy>AuthorizationRequest</Policy>
+        <Policy>DeleteForwardedHeaders</Policy>
+        <Policy>GenerateAccessToken</Policy>
+        <Policy>GenerateAuthorizationCode</Policy>
+        <Policy>RedirectToLoginApp</Policy>
+        <Policy>sample.loginpage.implicitflow</Policy>
+        <Policy>sample.loginpage.webserverflow</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

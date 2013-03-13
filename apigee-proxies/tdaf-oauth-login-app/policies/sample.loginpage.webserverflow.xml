@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RaiseFault enabled="true" continueOnError="false" async="false" name="sample.loginpage.webserverflow">
+    <DisplayName>sample.loginpage.webserverflow</DisplayName>
+    <FaultRules/>
+    <Properties/>
+    <FaultResponse>
+        <Set>
+            <Payload contentType="text/html">
+         
+         &lt;html&gt;
+			&lt;head&gt;
+			&lt;title&gt;Sample Login Page for User Consent&lt;/title&gt;
+			&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=iso-8859-1&quot;&gt;
+			&lt;/head&gt;
+			
+			&lt;body bgcolor=&quot;#FFFFFF&quot; text=&quot;#000000&quot;&gt;
+				&lt;table width=&quot;100%&quot; border=&quot;0&quot;&gt;
+					&lt;tr&gt;
+						&lt;td valign=&quot;middle&quot; height=&quot;700&quot;&gt;
+							&lt;form name=&quot;form1&quot; method=&quot;GET&quot; action=&quot;{proxy.basepath}/authorizationcode&quot;&gt;
+								&lt;input type=&quot;hidden&quot; name=&quot;client_id&quot; value=&quot;{request.queryparam.client_id}&quot; /&gt;
+								&lt;input type=&quot;hidden&quot; name=&quot;response_type&quot; value=&quot;{request.queryparam.response_type}&quot; /&gt;
+								&lt;input type=&quot;hidden&quot; name=&quot;scope&quot; value=&quot;{request.queryparam.scope}&quot; /&gt;
+
+                  				&lt;p&gt;Dare acceso a los scopes: {request.queryparam.scope}&lt;/p&gt; 
+
+                  				&lt;table width=&quot;300&quot; border=&quot;0&quot; align=&quot;center&quot;&gt;
+									&lt;tr bgcolor=&quot;#CCCCCC&quot;&gt;
+										&lt;td colspan=&quot;2&quot;&gt;
+											&lt;div align=&quot;center&quot;&gt;
+												&lt;b&gt;Login Form&lt;/b&gt;
+											&lt;/div&gt;
+										&lt;/td&gt;
+									&lt;/tr&gt;
+									&lt;tr&gt;
+										&lt;td&gt;&lt;b&gt;&lt;font color=&quot;#660000&quot;&gt;User Name&lt;/font&gt;&lt;/b&gt;&lt;/td&gt;
+										&lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;userId&quot;
+											autofocus=&quot;autofocus&quot; required /&gt;&lt;/td&gt;
+									&lt;/tr&gt;
+									&lt;tr&gt;
+										&lt;td&gt;&lt;b&gt;&lt;font color=&quot;#660000&quot;&gt;Password&lt;/font&gt;&lt;/b&gt;&lt;/td&gt;
+										&lt;td&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot; required /&gt;&lt;/td&gt;
+									&lt;/tr&gt;
+									&lt;tr&gt;
+										&lt;td&gt;&lt;/td&gt;
+										&lt;td&gt;&lt;input type=&quot;submit&quot; name=&quot;Submit&quot; value=&quot;Submit&quot;&gt;
+										&lt;/td&gt;
+									&lt;/tr&gt;
+								&lt;/table&gt;
+							&lt;/form&gt;
+						&lt;/td&gt;
+					&lt;/tr&gt;
+				&lt;/table&gt;
+			&lt;/body&gt;
+			&lt;/html&gt;
+		
+     </Payload>
+            <StatusCode>200</StatusCode>
+            <ReasonPhrase>Sample Login Page</ReasonPhrase>
+        </Set>
+    </FaultResponse>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</RaiseFault>

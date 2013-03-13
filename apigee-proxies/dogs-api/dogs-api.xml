@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="1" name="dogs-api">
+    <ConfigurationVersion minorVersion="0" majorVersion="4"/>
+    <CreatedAt>1363024887510</CreatedAt>
+    <CreatedBy>adminui@apigee.com</CreatedBy>
+    <Description></Description>
+    <DisplayName>dogs-api</DisplayName>
+    <LastModifiedAt>1363024887510</LastModifiedAt>
+    <LastModifiedBy>adminui@apigee.com</LastModifiedBy>
+    <Policies/>
+    <ProxyEndpoints/>
+    <Resources/>
+    <TargetServers/>
+    <TargetEndpoints/>
+</APIProxy>
