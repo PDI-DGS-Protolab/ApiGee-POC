@@ -71,7 +71,7 @@ everyauth.google
 everyauth.movistar
     .appId('ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S')
     .appSecret('9hwqAcMMHltPOb7h')
-    .scope('dogs')
+    .scope('dogs cats')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(accessToken, accessTokenExtra);
         return usersByMovistarId[user.id] || (usersByMovistarId[user.id] = addUser('Movistar', user.name));
@@ -127,7 +127,23 @@ app.get('/dogs/get', function(req, res){
 
 
 app.get('/user',  function(req, res){
-    res.json(req.user);
+  res.json(req.user);
+});
+
+app.get('/jack',  function(req, res){
+  var tokenInfo;
+  if (req.session.auth  && req.session.auth.movistar){
+    tokenInfo = req.session.auth.movistar
+  }
+  if (tokenInfo){
+    res.json({"token": tokenInfo.accessToken});
+  }
+  else {
+    res.json({"error": "Mira a ver si te conectas antes, ladron"});
+
+  }
+
+
 });
 
 var performCall = function performCall(req,res, options){
@@ -156,26 +172,51 @@ var performCall = function performCall(req,res, options){
 
 }
 
-app.get('/calltime', function (req, res){
-    var tokenInfo;
-    if (req.session.auth  && req.session.auth.movistar){
-        tokenInfo = req.session.auth.movistar
 
-    }
+app.get('/callcats', function (req, res){
+  var tokenInfo;
+  if (req.session.auth  && req.session.auth.movistar){
+    tokenInfo = req.session.auth.movistar
 
-    var options = {
-        host: 'foo-test.apigee.net',
-        port: 80,
-        path: '/time/get',
-        method: 'GET'
+  }
+
+  var options = {
+    host: '54.244.174.74',
+    port: 8080,
+    path: '/cats',
+    method: 'GET'
+  };
+  if (tokenInfo){
+    options.headers = {
+      Authorization: "Bearer " + tokenInfo.accessToken
     };
-    if (tokenInfo){
-        options.headers = {
-            Authorization: "Bearer " + tokenInfo.accessToken
-        };
-    }
+  }
 
-    performCall(req, res, options);
+  performCall(req, res, options);
+
+});
+
+
+app.get('/calltime', function (req, res){
+  var tokenInfo;
+  if (req.session.auth  && req.session.auth.movistar){
+    tokenInfo = req.session.auth.movistar
+
+  }
+
+  var options = {
+    host: 'foo-test.apigee.net',
+    port: 80,
+    path: '/time/get',
+    method: 'GET'
+  };
+  if (tokenInfo){
+    options.headers = {
+      Authorization: "Bearer " + tokenInfo.accessToken
+    };
+  }
+
+  performCall(req, res, options);
 
 });
 

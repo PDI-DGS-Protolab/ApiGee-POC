@@ -11,15 +11,24 @@ angular.module('tdafApp')
                     $scope.resultTime = data;
                 });
         };
-        $scope.getDogs = function getTime(){
-            $http({method: 'GET', url: '/calldogs'}).
-                success(function(data, status, headers, config) {
-                    $scope.resultDogs = data;
-                }).
-                error(function(data, status, headers, config) {
-                    $scope.resultDogs = data;
-                });
-        };
+    $scope.getDogs = function getTime(){
+      $http({method: 'GET', url: '/calldogs'}).
+        success(function(data, status, headers, config) {
+          $scope.resultDogs = data;
+        }).
+        error(function(data, status, headers, config) {
+          $scope.resultDogs = data;
+        });
+    };
+    $scope.getCats = function getCats(){
+      $http({method: 'GET', url: '/callcats'}).
+        success(function(data, status, headers, config) {
+          $scope.resultCats = data;
+        }).
+        error(function(data, status, headers, config) {
+          $scope.resultCats = data;
+        });
+    };
 
 
     });
