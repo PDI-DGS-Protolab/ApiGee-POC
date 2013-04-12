@@ -146,20 +146,43 @@ app.get('/authorize/:clientId/:responseType/:scope', function(req, res){
 
 
 app.post('/userlogin', function(req, res){
-    console.log('Entrando a userlogin', req.session);
-    user.login(req.param('username'), req.param('password'), function (err, userEntity){
-        if (err){
-            console.log("El user no ha hecho login")  ;
-            res.end('error');
-        }
-        else{
-            console.log("User logged", userEntity.get('username'));
-            req.session.user = {};
-            req.session.user.name = userEntity.get('name');
-            req.session.user.picture = userEntity.get('picture');
-            res.redirect('/#auth');
-        }
-    });
+  console.log('Entrando a userlogin', req.session);
+  user.login(req.param('username'), req.param('password'), function (err, userEntity){
+    if (err){
+      console.log("El user no ha hecho login")  ;
+      res.end('error');
+    }
+    else{
+      console.log("User logged", userEntity.get('username'));
+      req.session.user = {};
+      req.session.user.name = userEntity.get('name');
+      req.session.user.picture = userEntity.get('picture');
+      res.redirect('/#auth');
+    }
+  });
+});
+
+
+ /*
+  * Llamado cuando Apigee quiere hacer login user/password
+  * para el grantype password
+  */
+app.get('/login', function(req, res){
+  console.log('Entrando a login', req.session);
+  user.login(req.param('username'), req.param('password'), function (err, userEntity){
+    if (err){
+      res.statusCode = 401;
+      res.json({'error':'Invalid user/password'});
+    }
+    else{
+      console.log("User logged", userEntity.get('username'));
+      res.json({user:{
+        id:userEntity.get('uuid'),
+        name: userEntity.get('name'),
+        picture: userEntity.get('picture')
+      }});
+    }
+  });
 });
 
 
