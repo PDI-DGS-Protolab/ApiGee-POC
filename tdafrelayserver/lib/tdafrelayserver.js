@@ -14,13 +14,14 @@ var buildResponse = function(req){
 var server = http.createServer(function (req, res) {
   var obj = buildResponse(req);
   io.sockets.emit(obj);
-  console.log(obj);
+  //console.log(obj);
   res.writeHead(200, {'Content-Type': 'application/json'});
   res.end(JSON.stringify(obj));
-}).listen(process.env.VMC_APP_PORT || 8080, '127.0.0.1');
+});
 
-io.listen(server);
+io = io.listen(server);
 
+server.listen(process.env.VMC_APP_PORT || 1337);
 
 
 
