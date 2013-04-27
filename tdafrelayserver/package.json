@@ -42,5 +42,9 @@
     "grunt-github-pages": "*",
     "grunt-plato": "~0.2.0"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "socket.io": "~0.9.14",
+    "colors": "~0.6.0-1"
+  }
 }

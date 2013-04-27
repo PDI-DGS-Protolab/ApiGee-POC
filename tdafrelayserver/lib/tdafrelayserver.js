@@ -1,11 +1,27 @@
 'use strict';
+var http = require('http'),
+    io = require('socket.io');
 
 
-/**
- * The exported functions and properties for tdafrelayserver
- * @return {String}
- *   The condition of the module.
- */
-exports.awesome = function() {
-  return 'awesome';
+var buildResponse = function(req){
+  return {
+    headers: req.headers,
+    url: req.url,
+    method: req.method
+  };
 };
+
+var server = http.createServer(function (req, res) {
+  var obj = buildResponse(req);
+  io.sockets.emit(obj);
+  console.log(obj);
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  res.end(JSON.stringify(obj));
+}).listen(process.env.VMC_APP_PORT || 8080, '127.0.0.1');
+
+io.listen(server);
+
+
+
+
+
