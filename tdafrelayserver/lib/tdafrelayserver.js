@@ -13,7 +13,7 @@ var buildResponse = function(req){
 
 var server = http.createServer(function (req, res) {
   var obj = buildResponse(req);
-  io.sockets.emit(obj);
+  io.sockets.emit('request', obj);
   //console.log(obj);
   res.writeHead(200, {'Content-Type': 'application/json'});
   res.end(JSON.stringify(obj));
