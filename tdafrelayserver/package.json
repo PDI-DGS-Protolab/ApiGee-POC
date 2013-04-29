@@ -1,7 +1,7 @@
 {
   "name": "tdafrelayserver",
   "description": "Simple server for forwarding request to a socket.io client",
-  "version": "0.1.0-8",
+  "version": "0.1.0-9",
   "homepage": "https://github.com/PDI-DGS-Protolab/ApiGee-POC",
   "author": {
     "name": "Javier Mendiara Cañardo",

@@ -21,6 +21,13 @@ var server = http.createServer(function (req, res) {
 
 io = io.listen(server);
 
+//TID Corporative network fails accessing websockets, so we choose the
+//most conservative one
+io.configure(function () {
+  io.set('transports', ['xhr-polling']);
+});
+
+
 server.listen(process.env.VMC_APP_PORT || 1337);
 
 
