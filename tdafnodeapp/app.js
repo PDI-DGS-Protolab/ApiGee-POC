@@ -67,10 +67,6 @@ everyauth.google
  ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S
  Consumer Secret
  9hwqAcMMHltPOb7h
-
- ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S
- Consumer Secret
- 9hwqAcMMHltPOb7h
  */
 everyauth.movistar
     .appId('ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S')
@@ -78,7 +74,7 @@ everyauth.movistar
     .scope('userdata.user.read.basic dogs')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(accessToken, accessTokenExtra);
-        return usersByMovistarId[user.id] || (usersByMovistarId[user.id] = addUser('Movistar', user.name));
+        return usersByMovistarId[user.userId] || (usersByMovistarId[user.userId] = addUser('Movistar', user.firstName + ' ' + user.surname));
     })
     .redirectPath('/');
 
