@@ -49,7 +49,7 @@ everyauth.twitter
     .consumerKey("JLCGyLzuOK1BjnKPKGyQ")
     .consumerSecret("GNqKfPqtzOcsCtFbGTMqinoATHvBcy1nzCTimeA9M0")
     .findOrCreateUser( function (sess, accessToken, accessSecret, user) {
-        return usersByTwitId[user.id] || (usersByTwitId[user.id] = addUser('Twitter', user.name));
+        return (usersByTwitId[user.id] = addUser('Twitter', user.name));
     })
     .redirectPath('/');
 
@@ -59,7 +59,7 @@ everyauth.google
     .scope('https://www.googleapis.com/auth/userinfo.profile')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(user);
-        return usersByGoogleId[user.id] || (usersByGoogleId[user.id] = addUser('Google', user.name));
+        return  (usersByGoogleId[user.id] = addUser('Google', user.name));
     })
     .redirectPath('/');
 
@@ -75,7 +75,7 @@ everyauth.movistar
     .scope('userdata.user.read.basic dogs cats proxy')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(accessToken, accessTokenExtra);
-        return usersByMovistarId[user.userId] || (usersByMovistarId[user.userId] = addUser('Movistar', user.firstName + ' ' + user.surname));
+        return (usersByMovistarId[user.userId] = addUser('Movistar', user.firstName + ' ' + user.surname));
     })
     .redirectPath('/');
 
