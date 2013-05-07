@@ -3,21 +3,27 @@
 </div>
 
 <div ng-controller="UserController" ng-show="user.id">
-    <p class="alert-info">Hola! {{user.name}} de {{user.from}}!!! <a href="/logout">Logout</a></p>
+    <p class="alert-info">Hi! {{user.name}} from <i>{{user.from}}</i>!!! <a href="/logout">Logout</a></p>
 </div>
 
-<div ng-controller="TimeController">
-    <p><a ng-click="getTime()">GetTime</a></p>
-    <p ng-show="resultTime">Result:{{resultTime}}</p>
+<div ng-controller="ServicesController">
+    <p><a ng-click="getTime()">Time</a> - Calls a service <i>without</i> access permission</p>
+    <p class="response" ng-show="resultTime">Result:{{resultTime}}</p>
 
-    <p><a ng-click="getDogs()">GetDogs</a></p>
-    <p ng-show="resultDogs">Result:{{resultDogs}}</p>
+    <p><a ng-click="getDogs()">Dogs</a> - Calls a service <b>with</b> access permission</p>
+    <p class="response" ng-show="resultDogs">Result:{{resultDogs}}</p>
 
-    <p><a ng-click="getCats()">GetCats</a> - Llama directamente al servicio</p>
-    <p ng-show="resultCats">Result:{{resultCats}}</p>
+    <p><a ng-click="getCats()">Cats</a> - Calls a service <i>not behind</i> TDAF-API, but securized with tokens</p>
+    <p class="response" ng-show="resultCats">Result:{{resultCats}}</p>
+
+    <p><a ng-click="getProxy()">Proxy</a> - Demonstrates a call to a service behind TDAF-API, showing what headers where introduced</p>
+    <p class="response" ng-show="resultProxy">Result:{{resultProxy}}</p>
+
+    <hr/>
 </div>
 
 <div ng-controller="AuthController">
+    <p> Please, try to access to the above services, and then try it again after login with Movistar</p>
     <p>
         <a ng-click="onMovistarLogin()">
             <img style="border: 0px" src="http://cdn5.staztic.com/cdn/logos/clmamigosandroid-4.png:w48h48"
@@ -32,7 +38,7 @@
     </p>
     <p>
         <a ng-click="onGoogleLogin()">
-            GOOOOOOOOGLE
+            Google Login
         </a>
     </p>
 </div>

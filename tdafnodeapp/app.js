@@ -9,7 +9,8 @@ var express = require('express'),
     user = require('./routes/user'),
     http = require('http'),
     path = require('path'),
-    everyauth = require('everyauth');
+    everyauth = require('everyauth'),
+    uuid = require('node-uuid');
 
 var app = express();
 
@@ -71,7 +72,7 @@ everyauth.google
 everyauth.movistar
     .appId('ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S')
     .appSecret('9hwqAcMMHltPOb7h')
-    .scope('userdata.user.read.basic dogs')
+    .scope('userdata.user.read.basic dogs cats proxy')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(accessToken, accessTokenExtra);
         return usersByMovistarId[user.userId] || (usersByMovistarId[user.userId] = addUser('Movistar', user.firstName + ' ' + user.surname));
@@ -161,7 +162,7 @@ var performCall = function performCall(req,res, options){
     });
     reqApi.on('error', function (e){
         console.log('Fallo la petion a la API');
-        res.json({error:"Ha fallado la peticion, probablemente la haya cancelado pq tarda demasiado Apigee",
+        res.json({error:"Ha fallado la peticion, probablemente la haya cancelado",
             desc:e});
     });
     reqApi.setTimeout(5000, function (){
@@ -173,7 +174,7 @@ var performCall = function performCall(req,res, options){
 }
 
 
-app.get('/callcats', function (req, res){
+app.get('/callCats', function (req, res){
   var tokenInfo;
   if (req.session.auth  && req.session.auth.movistar){
     tokenInfo = req.session.auth.movistar
@@ -181,7 +182,7 @@ app.get('/callcats', function (req, res){
   }
 
   var options = {
-    host: '54.244.174.74',
+    host: '50.112.37.160',
     port: 8080,
     path: '/cats',
     method: 'GET'
@@ -197,7 +198,8 @@ app.get('/callcats', function (req, res){
 });
 
 
-app.get('/calltime', function (req, res){
+
+app.get('/callTime', function (req, res){
   var tokenInfo;
   if (req.session.auth  && req.session.auth.movistar){
     tokenInfo = req.session.auth.movistar
@@ -221,7 +223,31 @@ app.get('/calltime', function (req, res){
 });
 
 
-app.get('/calldogs', function (req, res){
+app.get('/callProxy', function (req, res){
+  var tokenInfo;
+  if (req.session.auth  && req.session.auth.movistar){
+    tokenInfo = req.session.auth.movistar
+
+  }
+
+  var options = {
+    host: 'foo-test.apigee.net',
+    port: 80,
+    path: '/proxy/' + uuid.v4(),
+    method: 'GET'
+  };
+  if (tokenInfo){
+    options.headers = {
+      Authorization: "Bearer " + tokenInfo.accessToken
+    };
+  }
+
+  performCall(req, res, options);
+
+});
+
+
+app.get('/callDogs', function (req, res){
     var tokenInfo;
     if (req.session.auth  && req.session.auth.movistar){
         tokenInfo = req.session.auth.movistar
@@ -243,9 +269,6 @@ app.get('/calldogs', function (req, res){
     performCall(req, res, options);
 
 });
-/*
-https://foo-test.apigee.net/oauth/authorize?response_type=code&client_id=jwAW3e130Bxi6xrZXlyXGBvtGO2nIV4K&redirect_uri=&scope=READ&state=foobar
- */
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
