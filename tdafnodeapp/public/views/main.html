@@ -3,9 +3,10 @@
 </div>
 
 <div ng-controller="UserController" ng-show="user.id">
-    <p class="alert-info">Hi! {{user.name}} from <i>{{user.from}}</i>!!! <a href="/logout">Logout</a></p>
+    <p class="alert-info">Hi! <i>{{user.from}}</i> user {{user.name}}</i> <a href="/logout">Logout</a></p>
 </div>
 
+        <!--
 <div ng-controller="ServicesController">
     <p><a ng-click="getTime()">Time</a> - Calls a service <i>without</i> access permission</p>
     <p class="response" ng-show="resultTime">Result:{{resultTime}}</p>
@@ -21,15 +22,16 @@
 
     <hr/>
 </div>
-
+           -->
 <div ng-controller="AuthController">
-    <p> Please, try to access to the above services, and then try it again after login with Movistar</p>
+    <p> Please, sign in with TDAF</p>
     <p>
         <a ng-click="onMovistarLogin()">
-            <img style="border: 0px" src="http://cdn5.staztic.com/cdn/logos/clmamigosandroid-4.png:w48h48"
+            <img style="border: 0px" src="tdaflogo.png"
                  alt="With Movistar"/>
         </a>
     </p>
+    <!--
     <p>
         <a ng-click="onTwitterLogin()">
             <img style="border: 0px" src="https://si0.twimg.com/images/dev/buttons/sign-in-with-twitter-l.png"
@@ -40,5 +42,5 @@
         <a ng-click="onGoogleLogin()">
             Google Login
         </a>
-    </p>
+    </p>  -->
 </div>

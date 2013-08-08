@@ -64,24 +64,27 @@ everyauth.google
     .redirectPath('/');
 
 /*
- Consumer Key
+ Consumer Key for first tests
  ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S
  Consumer Secret
  9hwqAcMMHltPOb7h
  */
 everyauth.movistar
-    .appId('ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S')
-    .appSecret('9hwqAcMMHltPOb7h')
-    .scope('userdata.user.read.basic dogs cats proxy')
+    .oauthHost('http://authserver-test.tdaf.tid.es')
+    .appId('5tnLxfJ3pzy14sQCIcjhT4jruHS9tLqj')
+    .appSecret('lQEoAuE8tE3aDZcT')
+    //.appId('ONa0kd4CsYftGGYgfCjYXn94sLrZAA8S')
+    //.appSecret('9hwqAcMMHltPOb7h')
+    .scope('test.scope test.scope2')
     .findOrCreateUser( function (session, accessToken, accessTokenExtra, user) {
         console.log(accessToken, accessTokenExtra);
-        return (usersByMovistarId[user.userId] = addUser('Movistar', user.firstName + ' ' + user.surname));
+        return (usersByMovistarId[user.userId] = addUser('TDAF', user.firstName + ' ' + user.surname));
     })
     .redirectPath('/');
 
 
 app.configure(function(){
-  app.set('port', process.env.VMC_APP_PORT || 3000);
+  app.set('port', process.env.VMC_APP_PORT || 9000);
   app.set('views', __dirname + '/public');
   app.engine('.html', require('ejs').renderFile);
   app.set('view engine', 'html');
@@ -227,7 +230,6 @@ app.get('/callProxy', function (req, res){
   var tokenInfo;
   if (req.session.auth  && req.session.auth.movistar){
     tokenInfo = req.session.auth.movistar
-
   }
 
   var options = {
